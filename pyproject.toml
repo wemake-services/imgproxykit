@@ -64,7 +64,7 @@ pyrefly = ">=1.4.1,<2"
 pyright = ">=1.1,<2"
 # TODO: relax the pin after a stable `ty` release:
 ty = "==0.0.99"
-types-docutils = ">=0.22,<0.24"
+types-docutils = ">=0.23.0.20261107,<0.24"
 
 # Unit tests, snapshots, and coverage:
 covdefaults = "^2.3"
