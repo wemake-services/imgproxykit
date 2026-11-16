@@ -11,6 +11,7 @@
 [![PyPI Downloads](https://static.pepy.tech/personalized-badge/imgproxykit?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=BLUE&left_text=downloads)](https://pepy.tech/projects/imgproxykit)
 [![Supported Python Version](https://img.shields.io/pypi/pyversions/imgproxykit.svg?labelColor=black&color=blue)](https://pypi.org/project/imgproxykit/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?labelColor=black)](LICENSE)
+[![DeepWiki](https://img.shields.io/badge/deepwiki-ask-blue?labelColor=black)](https://deepwiki.com/wemake-services/imgproxykit)
 
 </div>
 
