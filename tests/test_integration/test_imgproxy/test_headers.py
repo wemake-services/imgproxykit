@@ -1,5 +1,3 @@
-from email.message import Message
-
 import pytest
 import zapros
 from faker import Faker
@@ -35,7 +33,6 @@ def test_content_disposition(
     response = http_client.get(url)
 
     assert_image(response, size=(640, 480))
-    headers = Message()
-    headers['Content-Disposition'] = response.headers['Content-Disposition']
-    assert headers.get_content_disposition() == disposition
-    assert headers.get_filename() == f'{filename}.png'
+    assert response.headers['Content-Disposition'] == (
+        f'{disposition}; filename="{filename}.png"'
+    )

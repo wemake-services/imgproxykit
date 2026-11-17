@@ -51,7 +51,7 @@ class ImgproxyURLField(serializers.URLField):
 
     # Empty sources produce None, which URLField's return type excludes.
     @override
-    def to_representation(  # type: ignore[override]  # pyright: ignore[reportIncompatibleMethodOverride]  # ty: ignore[invalid-method-override]
+    def to_representation(  # type: ignore[override]  # pyright: ignore[reportIncompatibleMethodOverride]  # ty: ignore[incompatible-method-override]
         self,
         value: str | FieldFile | None,
     ) -> str | None:
@@ -111,7 +111,7 @@ class ImgproxyVariantsField(serializers.DictField):
 
     # DictField's types exclude source strings, model files, and None output.
     @override
-    def to_representation(  # type: ignore[override]  # pyright: ignore[reportIncompatibleMethodOverride]  # ty: ignore[invalid-method-override]
+    def to_representation(  # type: ignore[override]  # pyright: ignore[reportIncompatibleMethodOverride]  # ty: ignore[incompatible-method-override]
         self,
         value: str | FieldFile | None,  # type: ignore[override]
     ) -> dict[str, str] | None:
