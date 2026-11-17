@@ -800,14 +800,14 @@ tests = ["asttokens (>=2.1.0)", "coverage-enable-subprocess", "coverage[toml]", 
 
 [[package]]
 name = "faker"
-version = "40.44.0"
+version = "40.52.0"
 description = "Faker is a Python package that generates fake data for you."
 optional = false
 python-versions = ">=3.10"
 groups = ["main", "dev"]
 files = [
-    {file = "faker-40.44.0-py3-none-any.whl", hash = "sha256:db808a3ec33fe9ce5caf40b9fb61f85f46e429a56966f765209272adec83e4c6"},
-    {file = "faker-40.44.0.tar.gz", hash = "sha256:97245a3756dcaf35418b89bea9f03ae6881557db0032bf048744c2aaee2a9108"},
+    {file = "faker-40.52.0-py3-none-any.whl", hash = "sha256:73f3f9c0a82cfc5ca341972ef4282e7ec2fffe340d2fabe018238ae0da062ec1"},
+    {file = "faker-40.52.0.tar.gz", hash = "sha256:a57e48f8e9430917a75d7b53a1568dd10cf4f442058c1fab8a4253c81b2a745a"},
 ]
 markers = {main = "extra == \"litestar\""}
 
@@ -3548,4 +3548,4 @@ litestar = ["litestar"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12,<4"
-content-hash = "468fd65c926a90130aaf7c7fba8071f3d5b7e235fe7ad8d8d3672804d20f1c8d"
+content-hash = "564ed83bdf62d6a7f94a05773642f4bec497458300e647aff83343f7ba5a5e4e"
