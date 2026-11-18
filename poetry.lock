@@ -3515,14 +3515,14 @@ dev = ["pytest", "setuptools"]
 
 [[package]]
 name = "zapros"
-version = "0.26.0"
+version = "0.27.0"
 description = "Modern and extensible HTTP client for Python."
 optional = false
 python-versions = ">=3.10"
 groups = ["dev"]
 files = [
-    {file = "zapros-0.26.0-py3-none-any.whl", hash = "sha256:4e45d06abd31e59f140e5eb2d661d995cdde7af40bb4848cc51ff1fc4b2e8279"},
-    {file = "zapros-0.26.0.tar.gz", hash = "sha256:e17b7fd056004d5df4738c7790e981f93299a2fad32c05af8e4ee7857d5f50b8"},
+    {file = "zapros-0.27.0-py3-none-any.whl", hash = "sha256:0f778de8b1d3a39c8ffa8c5e03057d1fdb2b45da144565e90fe953c70c92c133"},
+    {file = "zapros-0.27.0.tar.gz", hash = "sha256:4c3eff76c088e9c04895d23272f0b3d1e4a0423a4d70cdba1f55f490a8d7861f"},
 ]
 
 [package.dependencies]
@@ -3548,4 +3548,4 @@ litestar = ["litestar"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12,<4"
-content-hash = "67c8ee97c2f9fffc74a0427a15f0466e811e73fdc2961486a95ffa75b1f01c0b"
+content-hash = "fb63d262b337c8b942b51f22250757c47aa9fab09154876621fed962cf01cea7"
