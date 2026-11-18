@@ -5,6 +5,7 @@ from imgproxykit import Client, Transform
 from tests.fixtures.credentials import Credentials
 
 _SOURCE: Final = 'https://example.com/photo.jpg'
+type _Thumbnail = Annotated[str, Transform(width=100)]
 
 
 @dataclass(frozen=True, slots=True, kw_only=True)
@@ -58,3 +59,22 @@ def test_empty_dataclass_variants() -> None:
     client = Client('https://example.com')
 
     assert client.variants(_SOURCE, variants=_EmptyVariants) == _EmptyVariants()
+
+
+@dataclass(frozen=True, slots=True, kw_only=True)
+class _AliasVariants:
+    """Declare a result field through a lazy type alias."""
+
+    small: _Thumbnail
+
+
+def test_type_alias_variants() -> None:
+    """Construct a typed result from a lazy type alias declaration."""
+    client = Client('https://example.com')
+    images = client.variants(_SOURCE, variants=_AliasVariants)
+
+    assert_type(images, _AliasVariants)
+    assert_type(images.small, str)
+    assert images == _AliasVariants(
+        small=client.url(_SOURCE, transform=Transform(width=100)),
+    )

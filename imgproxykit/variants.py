@@ -8,6 +8,7 @@ from typing import (
     get_type_hints,
 )
 
+from imgproxykit.internal.typing import unwrap_type_alias
 from imgproxykit.transform import Transform
 
 if TYPE_CHECKING:
@@ -70,6 +71,7 @@ class DataclassVariantsResolver:
                 'Variant fields must accept a constructor argument',
             )
 
+        annotation = unwrap_type_alias(annotation)
         arguments = get_args(annotation)
         if get_origin(annotation) is not Annotated or arguments[0] is not str:
             raise TypeError(
@@ -82,10 +84,9 @@ class DataclassVariantsResolver:
             for metadata in arguments[1:]
             if isinstance(metadata, Transform)
         ]
-        transform_count = len(transforms)
-        if transform_count != 1:
+        if len(transforms) != 1:
             raise TypeError(
                 f'Field {field_name!r} of {model!r} must declare exactly one '
-                f'`Transform` in its metadata, got {transform_count}',
+                f'`Transform` in its metadata, got {len(transforms)}',
             )
         return transforms[0]
