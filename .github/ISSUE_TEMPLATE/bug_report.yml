@@ -5,7 +5,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        See [CONTRIBUTING.md](https://github.com/kondratevdev/imgproxykit/blob/master/CONTRIBUTING.md).
+        See [CONTRIBUTING.md](https://github.com/wemake-services/imgproxykit/blob/master/CONTRIBUTING.md).
         Use dummy signing keys, salt, and source URLs in reproductions. Do not share secrets or private URLs.
   - type: input
     id: imgproxykit-version

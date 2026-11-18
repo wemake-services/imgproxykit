@@ -195,7 +195,7 @@ html_theme_options = {
             },
         },
     ],
-    'repo_url': 'https://github.com/kondratevdev/imgproxykit',
+    'repo_url': 'https://github.com/wemake-services/imgproxykit',
     'repo_name': 'imgproxykit',
     'features': [
         'navigation.sections',

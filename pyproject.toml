@@ -34,9 +34,9 @@ email = "mail@kondratev.dev"
 
 [project.urls]
 Documentation = "https://imgproxykit.readthedocs.io/en/latest/"
-GitHub = "https://github.com/kondratevdev/imgproxykit"
-Issues = "https://github.com/kondratevdev/imgproxykit/issues"
-Changelog = "https://github.com/kondratevdev/imgproxykit/releases"
+GitHub = "https://github.com/wemake-services/imgproxykit"
+Issues = "https://github.com/wemake-services/imgproxykit/issues"
+Changelog = "https://github.com/wemake-services/imgproxykit/releases"
 
 
 [tool.poetry]

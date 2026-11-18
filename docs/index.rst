@@ -6,9 +6,9 @@ imgproxykit
 
 .. container:: landing-badges
 
-    .. image:: https://img.shields.io/github/actions/workflow/status/kondratevdev/imgproxykit/test.yml?branch=master&label=tests&labelColor=black&color=blue
+    .. image:: https://img.shields.io/github/actions/workflow/status/wemake-services/imgproxykit/test.yml?branch=master&label=tests&labelColor=black&color=blue
        :alt: Tests Result
-       :target: https://github.com/kondratevdev/imgproxykit/actions/workflows/test.yml
+       :target: https://github.com/wemake-services/imgproxykit/actions/workflows/test.yml
 
     .. image:: https://img.shields.io/pypi/v/imgproxykit.svg?labelColor=black&color=blue
        :alt: PyPI Version
@@ -24,7 +24,7 @@ imgproxykit
 
     .. image:: https://img.shields.io/badge/license-MIT-blue.svg?labelColor=black
        :alt: License
-       :target: https://github.com/kondratevdev/imgproxykit/blob/master/LICENSE
+       :target: https://github.com/wemake-services/imgproxykit/blob/master/LICENSE
 
 .. rst-class:: landing-description
 
@@ -40,7 +40,7 @@ different use cases, and generate named variants from a single source.
 
        Get started
 
-    .. button-link:: https://github.com/kondratevdev/imgproxykit
+    .. button-link:: https://github.com/wemake-services/imgproxykit
        :color: primary
        :outline:
 

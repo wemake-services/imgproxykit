@@ -16,7 +16,7 @@ Cheers!
 
 ## AI Policy
 
-- [ ] I have read and agree to the [AI Policy](https://github.com/kondratevdev/imgproxykit/blob/master/.github/AI_POLICY.md), removed any "Co-Authored-By" lines attributing coding agents, and manually reviewed the final result
+- [ ] I have read and agree to the [AI Policy](https://github.com/wemake-services/imgproxykit/blob/master/.github/AI_POLICY.md), removed any "Co-Authored-By" lines attributing coding agents, and manually reviewed the final result
 
 
 ## Checklist

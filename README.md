@@ -6,7 +6,7 @@
 
 <div align="center">
 
-[![Tests Result](https://img.shields.io/github/actions/workflow/status/kondratevdev/imgproxykit/test.yml?branch=master&label=tests&labelColor=black&color=blue)](https://github.com/kondratevdev/imgproxykit/actions/workflows/test.yml)
+[![Tests Result](https://img.shields.io/github/actions/workflow/status/wemake-services/imgproxykit/test.yml?branch=master&label=tests&labelColor=black&color=blue)](https://github.com/wemake-services/imgproxykit/actions/workflows/test.yml)
 [![PyPI Version](https://img.shields.io/pypi/v/imgproxykit.svg?labelColor=black&color=blue)](https://pypi.org/project/imgproxykit/)
 [![PyPI Downloads](https://static.pepy.tech/personalized-badge/imgproxykit?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=BLUE&left_text=downloads)](https://pepy.tech/projects/imgproxykit)
 [![Supported Python Version](https://img.shields.io/pypi/pyversions/imgproxykit.svg?labelColor=black&color=blue)](https://pypi.org/project/imgproxykit/)
@@ -128,7 +128,7 @@ Build variants by extending a shared transform with a width for each size:
 
 See the [contributing guide](CONTRIBUTING.md) for development setup and checks.
 Bug reports and feature requests are welcome on the
-[issue tracker](https://github.com/kondratevdev/imgproxykit/issues).
+[issue tracker](https://github.com/wemake-services/imgproxykit/issues).
 
 ## License
 
