@@ -233,4 +233,4 @@ class Client:
             name: self.url(source, transform=transform)  # ty: ignore[invalid-argument-type]
             for name, transform in transforms.items()
         }
-        return urls if isinstance(variants, Mapping) else variants(**urls)  # ty: ignore[invalid-return-type, invalid-argument-type]
+        return urls if isinstance(variants, Mapping) else variants(**urls)  # ty: ignore[invalid-explicit-return, invalid-argument-type]
