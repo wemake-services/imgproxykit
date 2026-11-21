@@ -29,7 +29,6 @@ class DataclassVariantsResolver:
     construction are handled by :meth:`imgproxykit.Client.variants`.
     """
 
-    #: Dataclass class whose fields declare the named image variants.
     model: type['DataclassInstance']
 
     def __call__(self) -> dict[str, Transform]:

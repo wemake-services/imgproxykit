@@ -122,7 +122,6 @@ class Transform:
             which adds no processing option segments to the URL.
     """
 
-    #: Component that resolves built-in scalar keyword options.
     keyword_option_resolver_cls: ClassVar[type[KeywordOptionResolver]] = (
         KeywordOptionResolver
     )
