@@ -12,8 +12,6 @@ from imgproxykit.types import SourceEncoding
 if TYPE_CHECKING:
     from _typeshed import DataclassInstance
 
-
-#: Django setting containing the imgproxy client configuration.
 IMGPROXYKIT_SETTINGS: Final = 'IMGPROXYKIT'
 
 
@@ -46,35 +44,35 @@ class Settings(enum.StrEnum):
 class ClientSettingsDict(TypedDict, total=False, closed=True):
     """Describe client constructor options for static type checking."""
 
-    #: Public imgproxy address, including any deployment path prefix.
     base_url: Required[str]
-    #: Hex-encoded signing key matching the imgproxy server.
+    """Public imgproxy address, including any deployment path prefix."""
     key: str | None
-    #: Hex-encoded signing salt matching the imgproxy server.
+    """Hex-encoded signing key matching the imgproxy server."""
     salt: str | None
-    #: Positive signature digest byte count; must match the server.
+    """Hex-encoded signing salt matching the imgproxy server."""
     signature_size: int
-    #: Signature marker used when signing credentials are omitted.
+    """Positive signature digest byte count; must match the server."""
     unsigned_marker: str
-    #: Processing argument separator; must match the server.
+    """Signature marker used when signing credentials are omitted."""
     argument_separator: str
-    #: Use short processing option aliases when available.
+    """Processing argument separator; must match the server."""
     use_short_options: bool
-    #: Source URL representation using Base64 or percent-encoded plain mode.
+    """Use short processing option aliases when available."""
     source_encoding: SourceEncoding
+    """Source URL representation using Base64 or percent-encoded plain mode."""
 
 
 class SettingsDict(TypedDict, total=False, closed=True):
     """Describe the IMGPROXYKIT dictionary for static type checking."""
 
-    #: Client constructor options; defaults remain in the core Client.
     client: Required[ClientSettingsDict]
-    #: Named Python transformations, distinct from imgproxy server presets.
+    """Client constructor options; defaults remain in the core Client."""
     transforms: Mapping[str, Transform]
-    #: Named sets of transformations; objects can be shared with transforms.
+    """Named Python transformations, distinct from imgproxy server presets."""
     variants: Mapping[str, Mapping[str, Transform] | type['DataclassInstance']]
-    #: Convert the original source to a URI, including empty file fields.
+    """Named sets of transformations; objects can be shared with transforms."""
     source_resolver: Callable[[str | FieldFile], str] | str
+    """Convert the original source to a URI, including empty file fields."""
 
 
 assert set(SettingsDict.__annotations__) == set(Settings), (  # noqa: S101

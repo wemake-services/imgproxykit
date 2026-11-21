@@ -31,11 +31,8 @@ class Client:
         '_url_signer',
     )
 
-    #: Component that resolves processing parameters and builds unsigned paths.
     path_serializer_cls: ClassVar[type[PathSerializer]] = PathSerializer
-    #: Component that signs paths or returns the unsigned URL marker.
     url_signer_cls: ClassVar[type[UrlSigner]] = UrlSigner
-    #: Component that validates dataclass variant declarations.
     variants_resolver_cls: ClassVar[type[DataclassVariantsResolver]] = (
         DataclassVariantsResolver
     )
