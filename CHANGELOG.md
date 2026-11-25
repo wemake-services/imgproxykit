@@ -12,6 +12,13 @@ but with a deprecation period.
 
 ### Features
 
+- Added `Client(only_presets=True)` to generate URLs for servers running
+  with `IMGPROXY_ONLY_PRESETS`. Accepts `Preset` options with an optional
+  `Format`, serialized as a source suffix. Also available in Django client
+  settings, #198
+- Added customizable `TransformSerializer`, `PresetsSerializer`,
+  `OptionSerializer`, and `SourceSerializer` components for path
+  serialization, #198
 - Support Python 3.12 `type` aliases, alias chains, and generic aliases
   in dataclass variant declarations, #179
 - `KeywordOptionResolver.from_kwarg()` now preserves the input value type
@@ -19,6 +26,10 @@ but with a deprecation period.
 
 ### Breaking changes
 
+- `PathSerializer` now requires the `only_presets` keyword-only argument.
+  Pass `False` to retain normal processing option serialization, and update
+  custom path serializer constructors to accept it. Direct calls now also
+  require `transform`; pass `None` for no transformation, #198
 - Moved `KeywordOptions` and `KeywordOptionResolver` from
   `imgproxykit.keyword_options` to `imgproxykit.transform`.
   Update imports to use the new module; `imgproxykit.keyword_options`
