@@ -27,6 +27,7 @@ class ClientSettings(enum.StrEnum):
     unsigned_marker = 'unsigned_marker'
     argument_separator = 'argument_separator'
     use_short_options = 'use_short_options'
+    only_presets = 'only_presets'
     source_encoding = 'source_encoding'
 
 
@@ -58,6 +59,8 @@ class ClientSettingsDict(TypedDict, total=False, closed=True):
     """Processing argument separator; must match the server."""
     use_short_options: bool
     """Use short processing option aliases when available."""
+    only_presets: bool
+    """Serialize only preset options, ignoring other processing options."""
     source_encoding: SourceEncoding
     """Source URL representation using Base64 or percent-encoded plain mode."""
 

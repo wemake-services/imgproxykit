@@ -3,7 +3,7 @@ from collections.abc import Callable
 import pytest
 
 from imgproxykit.options import Resize
-from imgproxykit.serialization import PathSerializer
+from imgproxykit.serialization import OptionSerializer
 from imgproxykit.types import ResizeType
 
 
@@ -26,16 +26,13 @@ from imgproxykit.types import ResizeType
     ],
 )
 def test_resize(
-    path_serializer: PathSerializer,
+    option_serializer: OptionSerializer,
     *,
     option: Resize,
     expected: str,
 ) -> None:
     """Ensure that resize arguments follow protocol order and retain gaps."""
-    assert (
-        path_serializer._serialize_segment(option.name, option.arguments)
-        == expected
-    )
+    assert option_serializer(option.name, option.arguments) == expected
 
 
 @pytest.mark.parametrize(
@@ -60,7 +57,7 @@ def test_resize(
     ],
 )
 def test_resize_factories(
-    path_serializer: PathSerializer,
+    option_serializer: OptionSerializer,
     *,
     factory: Callable[..., Resize],
     mode: ResizeType,
@@ -71,6 +68,6 @@ def test_resize_factories(
     option = factory(**settings)
 
     assert (
-        path_serializer._serialize_segment(option.name, option.arguments)
+        option_serializer(option.name, option.arguments)
         == f'resize:{mode}{suffix}'
     )

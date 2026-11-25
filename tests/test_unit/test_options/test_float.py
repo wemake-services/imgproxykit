@@ -2,7 +2,7 @@ import pytest
 from faker import Faker
 
 from imgproxykit import options
-from imgproxykit.serialization import PathSerializer
+from imgproxykit.serialization import OptionSerializer
 from tests.infra import OptionFactory
 
 
@@ -17,7 +17,7 @@ from tests.infra import OptionFactory
     ],
 )
 def test_float_options(
-    path_serializer: PathSerializer,
+    option_serializer: OptionSerializer,
     faker: Faker,
     *,
     option_type: OptionFactory[float],
@@ -29,6 +29,5 @@ def test_float_options(
     option = option_type(value=value)
 
     assert (
-        path_serializer._serialize_segment(option.name, option.arguments)
-        == f'{prefix}:{value}'
+        option_serializer(option.name, option.arguments) == f'{prefix}:{value}'
     )

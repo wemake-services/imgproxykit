@@ -3,7 +3,7 @@ from collections.abc import Callable
 import pytest
 
 from imgproxykit.options import Gravity
-from imgproxykit.serialization import PathSerializer
+from imgproxykit.serialization import OptionSerializer
 from imgproxykit.types import GravityType
 
 
@@ -19,16 +19,13 @@ from imgproxykit.types import GravityType
     ],
 )
 def test_gravity(
-    path_serializer: PathSerializer,
+    option_serializer: OptionSerializer,
     *,
     option: Gravity,
     expected: str,
 ) -> None:
     """Ensure that gravity retains its anchor and optional offset positions."""
-    assert (
-        path_serializer._serialize_segment(option.name, option.arguments)
-        == expected
-    )
+    assert option_serializer(option.name, option.arguments) == expected
 
 
 @pytest.mark.parametrize(
@@ -55,7 +52,7 @@ def test_gravity(
     ],
 )
 def test_anchor_factories(
-    path_serializer: PathSerializer,
+    option_serializer: OptionSerializer,
     *,
     factory: Callable[..., Gravity],
     position: GravityType,
@@ -67,7 +64,7 @@ def test_anchor_factories(
 
     assert option == Gravity(position=position, **offsets)
     assert (
-        path_serializer._serialize_segment(option.name, option.arguments)
+        option_serializer(option.name, option.arguments)
         == f'gravity:{position}{suffix}'
     )
 
@@ -82,13 +79,10 @@ def test_anchor_factories(
     ],
 )
 def test_special_factories(
-    path_serializer: PathSerializer,
+    option_serializer: OptionSerializer,
     *,
     option: Gravity,
     expected: str,
 ) -> None:
     """Serialize smart gravity and focus coordinates, including endpoints."""
-    assert (
-        path_serializer._serialize_segment(option.name, option.arguments)
-        == expected
-    )
+    assert option_serializer(option.name, option.arguments) == expected

@@ -116,6 +116,56 @@ and :meth:`~imgproxykit.Client.variants`.
     generated URLs to browsers and other clients. Use your own credentials
     when connecting to a production server.
 
+Use presets-only mode
+---------------------
+
+Set ``only_presets=True`` when your server runs with
+`IMGPROXY_ONLY_PRESETS=true
+<https://docs.imgproxy.net/usage/presets#only-presets>`__.
+This example uses a separate server at ``http://localhost:8082``:
+
+.. admonition:: Run imgproxy in presets-only mode
+    :collapsible: closed
+
+    Start this container, then run the example and open the printed URL:
+
+    .. code-block:: bash
+
+        docker run -d --rm \
+          --name imgproxy-guide-presets \
+          -p 127.0.0.1:8082:8080 \
+          -e 'IMGPROXY_ONLY_PRESETS=true' \
+          -e 'IMGPROXY_PRESETS=thumbnail=resize:fill:300:300,small=resize:fill:96:96' \
+          ghcr.io/imgproxy/imgproxy:v4.0.0
+
+    This server accepts unsigned URLs and defines the presets used below.
+    Stop it with ``docker stop imgproxy-guide-presets`` when finished.
+
+Pass server preset names through :class:`~imgproxykit.options.Preset`:
+
+.. literalinclude:: /examples/client/only_presets.py
+   :language: python
+   :show-output:
+
+.. code-annotations::
+
+   1. Match the presets-only mode enabled on the container above.
+   2. Apply presets in their supplied order. Here, ``small`` overrides the
+      dimensions from ``thumbnail``.
+   3. Select the output format. In this mode, it becomes a source suffix:
+      ``.webp`` for Base64 or ``@webp`` for plain sources.
+
+The URL contains one preset list without the ``preset:`` prefix. Signing
+and source encoding work as usual. Without an explicit format, imgproxy
+selects one using the presets and server defaults.
+
+.. note::
+
+   At least one nonempty preset name is required. Options other than
+   ``Preset`` and ``Format`` raise ``ValueError``. Format options may appear
+   anywhere; the last one overrides the format set by any preset. If a preset
+   enables ``raw``, imgproxy ignores the format suffix.
+
 Next steps
 ----------
 

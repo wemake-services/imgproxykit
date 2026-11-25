@@ -3,7 +3,7 @@ from collections.abc import Callable
 import pytest
 
 from imgproxykit.options import Watermark
-from imgproxykit.serialization import PathSerializer
+from imgproxykit.serialization import OptionSerializer
 
 
 @pytest.mark.parametrize(
@@ -24,16 +24,13 @@ from imgproxykit.serialization import PathSerializer
     ],
 )
 def test_watermark(
-    path_serializer: PathSerializer,
+    option_serializer: OptionSerializer,
     *,
     option: Watermark,
     expected: str,
 ) -> None:
     """Ensure that watermark arguments retain their order and omitted slots."""
-    assert (
-        path_serializer._serialize_segment(option.name, option.arguments)
-        == expected
-    )
+    assert option_serializer(option.name, option.arguments) == expected
 
 
 @pytest.mark.parametrize(
@@ -61,7 +58,7 @@ def test_watermark(
     ],
 )
 def test_anchor_factories(
-    path_serializer: PathSerializer,
+    option_serializer: OptionSerializer,
     *,
     factory: Callable[..., Watermark],
     position: str,
@@ -72,7 +69,7 @@ def test_anchor_factories(
     option = factory(opacity=0.5, **settings)
 
     assert (
-        path_serializer._serialize_segment(option.name, option.arguments)
+        option_serializer(option.name, option.arguments)
         == f'watermark:0.5:{position}{suffix}'
     )
 
@@ -101,13 +98,10 @@ def test_anchor_factories(
     ],
 )
 def test_repeat_factory(
-    path_serializer: PathSerializer,
+    option_serializer: OptionSerializer,
     *,
     option: Watermark,
     expected: str,
 ) -> None:
     """Serialize tile spacing in the protocol's offset positions."""
-    assert (
-        path_serializer._serialize_segment(option.name, option.arguments)
-        == expected
-    )
+    assert option_serializer(option.name, option.arguments) == expected

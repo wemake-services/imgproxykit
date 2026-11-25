@@ -1,7 +1,7 @@
 import pytest
 
 from imgproxykit.options import SkipProcessing
-from imgproxykit.serialization import PathSerializer
+from imgproxykit.serialization import OptionSerializer
 
 
 @pytest.mark.parametrize(
@@ -13,13 +13,10 @@ from imgproxykit.serialization import PathSerializer
     ],
 )
 def test_skip_processing(
-    path_serializer: PathSerializer,
+    option_serializer: OptionSerializer,
     *,
     option: SkipProcessing,
     expected: str,
 ) -> None:
     """Ensure that skipped formats retain their order and allow omission."""
-    assert (
-        path_serializer._serialize_segment(option.name, option.arguments)
-        == expected
-    )
+    assert option_serializer(option.name, option.arguments) == expected

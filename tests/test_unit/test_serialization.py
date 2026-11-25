@@ -4,7 +4,7 @@ import pytest
 
 from imgproxykit import Transform
 from imgproxykit.options import Format, Preset, Quality, Resize
-from imgproxykit.serialization import PathSerializer
+from imgproxykit.serialization import OptionSerializer, PathSerializer
 from imgproxykit.types import Argument
 
 _SOURCE: Final = 'https://example.com/photo.jpg'
@@ -29,7 +29,7 @@ def test_source_path(
     expected: str,
 ) -> None:
     """Ensure that sources are encoded unchanged without Base64 padding."""
-    assert path_serializer(source) == expected
+    assert path_serializer(source, transform=None) == expected
 
 
 @pytest.mark.parametrize(
@@ -113,13 +113,13 @@ def test_transform_path(
     ],
 )
 def test_serialize_segment(
-    path_serializer: PathSerializer,
     *,
     arguments: tuple[Argument, ...],
     expected: str,
 ) -> None:
     """Ensure that arguments retain their positions and explicit values."""
-    assert path_serializer._serialize_segment('resize', arguments) == expected
+    serializer = OptionSerializer(argument_separator=':')
+    assert serializer('resize', arguments) == expected
 
 
 def test_custom_argument_separator() -> None:
@@ -128,6 +128,7 @@ def test_custom_argument_separator() -> None:
         argument_separator=',',
         use_short_options=False,
         source_encoding='base64',
+        only_presets=False,
     )
     transform = Transform(Resize(width=300), format='webp')
     assert serializer(_SOURCE, transform=transform) == (
@@ -141,6 +142,7 @@ def test_short_names_with_custom_separator() -> None:
         argument_separator=',',
         use_short_options=True,
         source_encoding='base64',
+        only_presets=False,
     )
     transform = Transform(Resize(width=300), format='webp', raw=False)
 
@@ -155,6 +157,7 @@ def test_plain_source_path() -> None:
         argument_separator=',',
         use_short_options=True,
         source_encoding='plain',
+        only_presets=False,
     )
     assert serializer(
         'http://example.com/images/curiosity.jpg?size=300',
@@ -163,3 +166,34 @@ def test_plain_source_path() -> None:
         '/w,300/f,webp/plain/'
         'http%3A%2F%2Fexample.com%2Fimages%2Fcuriosity.jpg%3Fsize%3D300'
     )
+
+
+@pytest.mark.parametrize(
+    ('transform', 'expected'),
+    [
+        (
+            Transform(Preset('thumbnail', 'small'), Preset('watermarked')),
+            (
+                '/thumbnail;small;watermarked/plain/'
+                'https%3A%2F%2Fexample.com%2Fphoto.jpg'
+            ),
+        ),
+        (
+            Transform(
+                Format('avif'),
+                Preset('thumbnail'),
+                Format('webp'),
+            ),
+            '/thumbnail/plain/https%3A%2F%2Fexample.com%2Fphoto.jpg@webp',
+        ),
+    ],
+)
+def test_only_presets_path(*, transform: Transform, expected: str) -> None:
+    """Ensure that presets keep their order and the last format is a suffix."""
+    serializer = PathSerializer(
+        argument_separator=';',
+        use_short_options=False,
+        source_encoding='plain',
+        only_presets=True,
+    )
+    assert serializer(_SOURCE, transform=transform) == expected

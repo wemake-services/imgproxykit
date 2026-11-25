@@ -1,7 +1,7 @@
 import pytest
 
 from imgproxykit.options import Zoom
-from imgproxykit.serialization import PathSerializer
+from imgproxykit.serialization import OptionSerializer
 
 
 @pytest.mark.parametrize(
@@ -12,13 +12,10 @@ from imgproxykit.serialization import PathSerializer
     ],
 )
 def test_zoom(
-    path_serializer: PathSerializer,
+    option_serializer: OptionSerializer,
     *,
     option: Zoom,
     expected: str,
 ) -> None:
     """Ensure that zoom supports uniform and independent axis factors."""
-    assert (
-        path_serializer._serialize_segment(option.name, option.arguments)
-        == expected
-    )
+    assert option_serializer(option.name, option.arguments) == expected

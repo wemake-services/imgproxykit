@@ -1,7 +1,7 @@
 import pytest
 
 from imgproxykit.options import Padding
-from imgproxykit.serialization import PathSerializer
+from imgproxykit.serialization import OptionSerializer
 
 
 @pytest.mark.parametrize(
@@ -15,13 +15,10 @@ from imgproxykit.serialization import PathSerializer
     ],
 )
 def test_padding(
-    path_serializer: PathSerializer,
+    option_serializer: OptionSerializer,
     *,
     option: Padding,
     expected: str,
 ) -> None:
     """Ensure that padding uses CSS side order and retains omitted sides."""
-    assert (
-        path_serializer._serialize_segment(option.name, option.arguments)
-        == expected
-    )
+    assert option_serializer(option.name, option.arguments) == expected

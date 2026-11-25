@@ -3,7 +3,7 @@ from typing import Final
 import pytest
 
 from imgproxykit.options import Trim
-from imgproxykit.serialization import PathSerializer
+from imgproxykit.serialization import OptionSerializer
 
 _THRESHOLD: Final = 10
 _BACKGROUND_COLOR: Final = 'ffffff'
@@ -30,16 +30,13 @@ _TRANSPARENCY_KEY: Final = 'FF00FF'
     ],
 )
 def test_trim(
-    path_serializer: PathSerializer,
+    option_serializer: OptionSerializer,
     *,
     option: Trim,
     expected: str,
 ) -> None:
     """Ensure that trim retains its threshold, color, and symmetry flags."""
-    assert (
-        path_serializer._serialize_segment(option.name, option.arguments)
-        == expected
-    )
+    assert option_serializer(option.name, option.arguments) == expected
 
 
 @pytest.mark.parametrize(
@@ -71,13 +68,10 @@ def test_trim(
     ],
 )
 def test_trim_transparent(
-    path_serializer: PathSerializer,
+    option_serializer: OptionSerializer,
     *,
     option: Trim,
     expected: str,
 ) -> None:
     """Ensure that transparent trimming retains its key color and flags."""
-    assert (
-        path_serializer._serialize_segment(option.name, option.arguments)
-        == expected
-    )
+    assert option_serializer(option.name, option.arguments) == expected
