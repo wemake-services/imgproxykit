@@ -3,6 +3,7 @@ from django.test import override_settings
 
 from imgproxykit import Transform
 from imgproxykit.integrations.django import get_client
+from imgproxykit.options import Preset
 
 
 def test_shared_client() -> None:
@@ -48,3 +49,21 @@ def test_unrelated_setting(settings: LazySettings) -> None:
     settings.DEBUG = True
 
     assert get_client() is client
+
+
+def test_only_presets_configuration(settings: LazySettings) -> None:
+    """Forward the presets-only client setting through the Django adapter."""
+    settings.IMGPROXYKIT = {
+        'client': {
+            'base_url': 'https://images.example.com',
+            'only_presets': True,
+            'source_encoding': 'plain',
+        },
+    }
+    assert (
+        get_client().url(
+            'source',
+            transform=Transform(Preset('small'), format='webp'),
+        )
+        == 'https://images.example.com/unsafe/small/plain/source@webp'
+    )

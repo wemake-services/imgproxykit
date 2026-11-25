@@ -1,7 +1,7 @@
 import pytest
 
 from imgproxykit.options import Size
-from imgproxykit.serialization import PathSerializer
+from imgproxykit.serialization import OptionSerializer
 
 
 @pytest.mark.parametrize(
@@ -22,13 +22,10 @@ from imgproxykit.serialization import PathSerializer
     ],
 )
 def test_size(
-    path_serializer: PathSerializer,
+    option_serializer: OptionSerializer,
     *,
     option: Size,
     expected: str,
 ) -> None:
     """Ensure that size arguments retain dimension and boolean positions."""
-    assert (
-        path_serializer._serialize_segment(option.name, option.arguments)
-        == expected
-    )
+    assert option_serializer(option.name, option.arguments) == expected

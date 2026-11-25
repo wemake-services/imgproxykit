@@ -1,7 +1,7 @@
 import pytest
 
 from imgproxykit import options
-from imgproxykit.serialization import PathSerializer
+from imgproxykit.serialization import OptionSerializer
 from tests.infra import OptionFactory
 
 
@@ -21,7 +21,7 @@ from tests.infra import OptionFactory
 )
 @pytest.mark.parametrize('value', [True, False])
 def test_boolean_options(
-    path_serializer: PathSerializer,
+    option_serializer: OptionSerializer,
     *,
     option_type: OptionFactory[bool],
     prefix: str,
@@ -31,6 +31,6 @@ def test_boolean_options(
     option = option_type(value=value)
 
     assert (
-        path_serializer._serialize_segment(option.name, option.arguments)
+        option_serializer(option.name, option.arguments)
         == f'{prefix}:{int(value)}'
     )

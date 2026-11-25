@@ -1,7 +1,7 @@
 import pytest
 
 from imgproxykit.options import Crop, Gravity
-from imgproxykit.serialization import PathSerializer
+from imgproxykit.serialization import OptionSerializer
 
 
 @pytest.mark.parametrize(
@@ -21,13 +21,10 @@ from imgproxykit.serialization import PathSerializer
     ],
 )
 def test_crop(
-    path_serializer: PathSerializer,
+    option_serializer: OptionSerializer,
     *,
     option: Crop,
     expected: str,
 ) -> None:
     """Ensure that crop dimensions and focus offsets retain their positions."""
-    assert (
-        path_serializer._serialize_segment(option.name, option.arguments)
-        == expected
-    )
+    assert option_serializer(option.name, option.arguments) == expected

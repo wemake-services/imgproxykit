@@ -1,7 +1,7 @@
 import pytest
 
 from imgproxykit.options import Preset
-from imgproxykit.serialization import PathSerializer
+from imgproxykit.serialization import OptionSerializer
 
 
 @pytest.mark.parametrize(
@@ -21,16 +21,13 @@ from imgproxykit.serialization import PathSerializer
     ],
 )
 def test_preset(
-    path_serializer: PathSerializer,
+    option_serializer: OptionSerializer,
     *,
     option: Preset,
     expected: str,
 ) -> None:
     """Ensure that preset names are positional and keep their order."""
-    assert (
-        path_serializer._serialize_segment(option.name, option.arguments)
-        == expected
-    )
+    assert option_serializer(option.name, option.arguments) == expected
 
 
 def test_preset_keeps_dataclass_equality() -> None:

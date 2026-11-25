@@ -49,6 +49,7 @@ class Client:
         unsigned_marker: str = 'unsafe',
         argument_separator: str = ':',
         use_short_options: bool = False,
+        only_presets: bool = False,
     ) -> None: ...
 
     @overload
@@ -63,6 +64,7 @@ class Client:
         signature_size: int = 32,
         argument_separator: str = ':',
         use_short_options: bool = False,
+        only_presets: bool = False,
     ) -> None: ...
 
     def __init__(  # noqa: WPS211
@@ -77,6 +79,7 @@ class Client:
         unsigned_marker: str = 'unsafe',
         argument_separator: str = ':',
         use_short_options: bool = False,
+        only_presets: bool = False,
     ) -> None:
         """
         Configure the imgproxy address and create the client components.
@@ -114,6 +117,12 @@ class Client:
                 <https://docs.imgproxy.net/usage/processing#source-url>`__.
             use_short_options: Use short processing option aliases when
                 available, falling back to full names. Defaults to ``False``.
+            only_presets: Match ``IMGPROXY_ONLY_PRESETS`` on the server.
+                Require nonempty Preset options, optionally combined with Format
+                options. The last format becomes a source suffix. Other
+                processing options are rejected. Defaults to ``False``.
+                See `IMGPROXY_ONLY_PRESETS
+                <https://docs.imgproxy.net/usage/presets#only-presets>`__.
 
         Raises:
             ValueError: With the default signer, if only one signing
@@ -141,6 +150,7 @@ class Client:
             argument_separator=argument_separator,
             use_short_options=use_short_options,
             source_encoding=source_encoding,
+            only_presets=only_presets,
         )
         self._url_signer = self.url_signer_cls(
             key=key,
