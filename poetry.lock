@@ -1057,19 +1057,19 @@ files = [
 
 [[package]]
 name = "import-linter"
-version = "2.16"
+version = "2.17"
 description = "Lint your Python architecture"
 optional = false
 python-versions = ">=3.11"
 groups = ["dev"]
 files = [
-    {file = "import_linter-2.16-py3-none-any.whl", hash = "sha256:e775602e9214ab3933fc7d2162278ea1f11dd9229c914735c1bda43b94619565"},
-    {file = "import_linter-2.16.tar.gz", hash = "sha256:c5bd0d38bdef46c7251120266b3bf72662bc8cd989a8fe461499936e12e8c6fa"},
+    {file = "import_linter-2.17-py3-none-any.whl", hash = "sha256:0e23a0b646bd422c0aaafdf6bfbb129563a055c1968edb3109c8811a32d98802"},
+    {file = "import_linter-2.17.tar.gz", hash = "sha256:74a4640c96b71965624d296508c3274655d3e4c2593c27b8330dd0570ebd6886"},
 ]
 
 [package.dependencies]
-click = ">=7"
-grimp = ">=3.19"
+click = ">=8.2.0"
+grimp = ">=3.20"
 rich = ">=14.2.0"
 
 [package.extras]
@@ -3551,4 +3551,4 @@ litestar = ["litestar"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12,<4"
-content-hash = "eb29e9b0b2a380c0404c15d891dde5319b0b8bfede53f16b3854fd4a66588fb2"
+content-hash = "6fcd87b6e284ff8bd2e227b4fde1f9e54a2e136db18b58beff5f553aa7fd48c6"
